@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -21,7 +21,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 const drawerWidth = 240;
 
-const openedMixin = (theme: Theme): CSSObject => ({
+const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -30,7 +30,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
   overflowX: 'hidden',
 });
 
-const closedMixin = (theme: Theme): CSSObject => ({
+const closedMixin = (theme) => ({
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -51,13 +51,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
 
-const AppBar = styled(MuiAppBar, {
+const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
-})<AppBarProps>(({ theme, open }) => ({
+})(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
@@ -90,7 +87,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MiniDrawer() {
+export function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -105,7 +102,7 @@ export default function MiniDrawer() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <StyledAppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -123,7 +120,7 @@ export default function MiniDrawer() {
             Mini variant drawer
           </Typography>
         </Toolbar>
-      </AppBar>
+      </StyledAppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
