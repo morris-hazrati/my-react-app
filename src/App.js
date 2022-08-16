@@ -1,9 +1,10 @@
 import './App.css';
+import {MiniDrawer} from "./main-components/mainDrawer"
 
 export default function App() {
   return (
     <div className="App">
-     Hello Morris
+     <MiniDrawer />
     </div>
   );
 }
