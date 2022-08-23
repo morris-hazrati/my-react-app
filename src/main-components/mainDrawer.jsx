@@ -36,7 +36,7 @@ export function MiniDrawer() {
   )
   console.log(movies)
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -49,7 +49,7 @@ export function MiniDrawer() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <StyledAppBar position="fixed" open={open}>
+      <StyledAppBar position="fixed">
         <Toolbar>
           <IconButton
             color="inherit"
